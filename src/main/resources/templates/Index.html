@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+
+    <title>Mockup</title>
+</head>
+<body>
+<div style="width: 100%; overflow: hidden;">
+    <div style="width: 600px; float: left;"> Bike Night! </div>
+    <div style="margin-left: 620px;"> 8:00 PM - 2:00 AM 1/2 </div>
+    <div style="width: 600px; float: left;"> Somewhere Clubhouse</div>
+    <div style="margin-left: 620px;"> Interested? </div>
+    <div style="margin-left: 620px;"> 30 others interested </div>
+    <h1>Posts</h1>
+
+    <c:forEach items="${postList}" var="post">
+        <p>
+            ${post.event}
+        </p>
+    </c:forEach>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts</title>
+</head>
+<style>
+body{
+margin:0;
+}
+    .main {
+  background-color:#f1f1f1;
+  padding:20px;
+  float:left;
+  width:65%;/*The width is 60%, by default*/
+}
+.left {
+  background-color:#2196F3;
+  margin:0px 0px 0px 0px;
+  float:right;
+  width:350px; /* The width is 20%, by default*/
+}
+.navBar{
+  background-color:rgb(60, 179, 113);
+  padding:3px;
+  }
+.event { font-size:20px; }
+.locationname {font-size:19px;}
+.time { font-size:20px; }
+span { margin-left:1em }
+.SidebarTitles {font-size:20px;}
+.SidebarText {font-size:15px;}
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+.sortlist {float:left;
+width:25%;}
+.search {float:left;
+width:25%}
+.location {float:left;
+width:25%;}
+li { display:inline;
+list-style-type: none;}
+h1 {text-align:left;
+}
+h2 {
+text-align:right;
+}
+div.side-left {float:left;}
+div.main-left {float:left;}
+.main-left a {
+    color: rgb(0, 170, 230);
+    text-decoration: none;
+    }
+div.main-right {float:right;}
+.clearBoth { clear:both; }
+</style>
+<body>
+<div class="navBar">
+        <ul class="sortlist">
+            <li>Sort By: </li>
+            <li> <a href="/viewposts?sort=new">new</a></li>
+            <li> <a href="/viewposts?sort=popular">popular</a></li>
+        </ul>
+        <ul class="location">
+            <li> Location: Louisville, KY</li>
+            <li> Change? </li>
+        </ul>
+        <ul class="search">
+            <li>
+                <form>
+                    <input type="text" name="search" placeholder="Search.." />
+                </form>
+            </li>
+        </ul>
+        <br class="clearBoth" />
+</div>
+<div class="main">
+    <table th:object="${postlist}" id="posttable" border="0">
+           <tr th:each="type : ${postlist}">
+
+    <div class="main-left">
+        <a target="_blank" href="/viewuser?user=userid"> Mike </a> <!--Username should be displayed. Clickable for real name/user info -->
+        <i class="status">: Site Owner</i>
+        <h1 class="event" th:text= "${type.getEvent()}" />
+        <p class="locationname" th:text= "${type.getLocationName()}" />
+
+        <p> This is the additional info that will be collapsible</p>
+    </div>
+    <div class="main-right">
+        <h2 class="time" th:text= "${type.getStartTime()} + ' - ' + ${type.getEndTime()}" />
+        <p><span th:text="${type.getAmountGoing()}"> </span> interested in going</p>
+        <a href="/addtointerests">Interested?</a>
+    </div>
+    <br class="clearBoth" />
+           </tr>
+    </table>
+</div>
+<div class="left">
+    <div class="side-left">
+        Ad space
+        <h1 class="SidebarTitles">Post Count:<span class="SidebarText">3</span> </h1>
+        <h1 class="SidebarTitles">Active Interests:<span class="SidebarText">2</span> </h1>
+        <a href="/viewprofile" class="button">View/Edit Profile</a>
+    </div>
+</div>
+</body>
+</html>
