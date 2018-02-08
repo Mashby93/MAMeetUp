@@ -1,0 +1,17 @@
+# Ignore IntelliJ editor files
+*.iml
+.idea
+
+# Ignore Eclipse editor files
+.classpath
+.project
+.settings
+/bin/
+
+# Ignore common output directories
+.dependencies
+build
+dist
+target
+*.log
+gulpfile.js.rej
